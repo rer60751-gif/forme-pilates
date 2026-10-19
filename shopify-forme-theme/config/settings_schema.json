@@ -1,0 +1,32 @@
+
+[
+  {
+    "name": "FORME brand",
+    "settings": [
+      {
+        "type": "color",
+        "id": "forme_burgundy",
+        "label": "Brand burgundy",
+        "default": "#64283B"
+      },
+      {
+        "type": "color",
+        "id": "forme_pink",
+        "label": "Soft pink",
+        "default": "#F6E9E7"
+      },
+      {
+        "type": "color",
+        "id": "forme_cream",
+        "label": "Cream",
+        "default": "#FBF8F4"
+      },
+      {
+        "type": "color",
+        "id": "forme_text",
+        "label": "Text color",
+        "default": "#35272A"
+      }
+    ]
+  }
+]

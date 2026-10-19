@@ -1,0 +1,21 @@
+
+{
+  "current": {
+    "settings": {
+      "forme_burgundy": "#64283B",
+      "forme_pink": "#F6E9E7",
+      "forme_cream": "#FBF8F4",
+      "forme_text": "#35272A"
+    }
+  },
+  "presets": {
+    "Default": {
+      "settings": {
+        "forme_burgundy": "#64283B",
+        "forme_pink": "#F6E9E7",
+        "forme_cream": "#FBF8F4",
+        "forme_text": "#35272A"
+      }
+    }
+  }
+}

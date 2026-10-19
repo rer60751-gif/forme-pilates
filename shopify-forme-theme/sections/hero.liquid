@@ -1,0 +1,122 @@
+
+<section class="forme-hero" style="background-color: {{ section.settings.background_color }};">
+  {% if section.settings.image != blank %}
+    <div class="forme-hero__image">
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', alt: section.settings.heading }}
+    </div>
+  {% endif %}
+
+  <div class="forme-hero__content page-width">
+    {% if section.settings.eyebrow != blank %}
+      <p class="forme-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {% endif %}
+
+    <h1>{{ section.settings.heading | escape }}</h1>
+
+    {% if section.settings.text != blank %}
+      <div class="forme-hero__text">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a class="button" href="{{ section.settings.button_link | default: routes.root_url }}">
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .forme-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+    color: #35272a;
+  }
+
+  .forme-hero__image {
+    position: absolute;
+    inset: 0;
+  }
+
+  .forme-hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+
+  .forme-hero__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .forme-hero__eyebrow {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  .forme-hero__text {
+    max-width: 540px;
+    margin-bottom: 28px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .forme-hero {
+      padding: 64px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "YOUR SPACE TO RECONNECT"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your form."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Discover mindful movement in a space designed around you.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore our classes"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F6E9E7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FORME hero"
+    }
+  ]
+}
+{% endschema %}

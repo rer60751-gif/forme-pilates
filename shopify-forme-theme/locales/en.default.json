@@ -1,0 +1,22 @@
+
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "search": {
+      "search": "Search"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out"
+    }
+  },
+  "cart": {
+    "title": "Your shopping bag",
+    "checkout": "Proceed to checkout",
+    "continue_shopping": "Continue shopping"
+  }
+}

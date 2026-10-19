@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORME Pilates — Boutique Pilates Studio</title>
+<meta name="description" content="A considered Pilates experience. Discover mindful movement, purposeful strength and a softer approach to wellness.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#58172e;--pink:#f2dce3;--blush:#faeff2;--cream:#fbf8f4;--ink:#30232a;--muted:#806b74}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif}
+a{color:inherit;text-decoration:none}
+.announcement{background:var(--wine);color:var(--pink);text-align:center;padding:11px;font-size:9px;letter-spacing:2px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 6%;background:var(--blush)}
+.logo{font:28px "Playfair Display",serif;letter-spacing:4px;color:var(--wine)}
+nav{display:flex;gap:25px}
+nav a,.nav-cta{font-size:10px;letter-spacing:1px}
+.nav-cta{background:var(--wine);color:white;padding:14px 18px}
+.hero{display:grid;grid-template-columns:1fr 1fr;background:var(--wine);color:var(--blush);min-height:570px}
+.hero-copy{padding:70px 10%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.eyebrow{font-size:10px;letter-spacing:2.5px}
+h1{font:400 clamp(54px,7vw,88px)/1.04 "Playfair Display",serif;margin:22px 0}
+.hero-copy .description{font-size:13px;line-height:2;max-width:350px;color:#e9ced7}
+.button{display:inline-block;background:var(--pink);color:var(--wine);padding:16px 21px;font-size:10px;letter-spacing:1px;margin-top:18px}
+.hero-image{min-height:450px;background:linear-gradient(#58172e12,#58172e12),url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=85") center/cover}
+.section{padding:85px 7%}
+.center{text-align:center}
+.kicker{font-size:10px;letter-spacing:3px;color:#966579}
+h2{font:400 clamp(38px,5vw,58px)/1.15 "Playfair Display",serif;color:var(--wine);margin:18px 0 24px}
+.intro{font-size:13px;line-height:2;color:var(--muted);max-width:550px;margin:0 auto}
+.philosophy{background:var(--cream)}
+.classes{background:var(--pink)}
+.class-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:45px;text-align:left}
+.class-card{background:var(--cream);padding-bottom:25px}
+.class-card img{width:100%;height:240px;object-fit:cover;display:block}
+.class-copy{padding:22px}
+.class-number{font-size:9px;letter-spacing:2px;color:#966579}
+h3{font:30px "Playfair Display",serif;color:var(--wine);margin:12px 0}
+.class-copy p{font-size:12px;line-height:1.9;color:var(--muted)}
+.text-link{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:1px;color:var(--wine);border-bottom:1px solid var(--wine);padding-bottom:7px}
+.studio{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:55px;background:var(--cream)}
+.studio-image{width:100%;height:420px;object-fit:cover}
+.studio-copy p{font-size:13px;line-height:2;color:var(--muted)}
+.quote{background:#ead0d9;padding:70px 8%;text-align:center}
+.quote blockquote{font:400 clamp(28px,4vw,44px)/1.35 "Playfair Display",serif;color:var(--wine);max-width:850px;margin:20px auto}
+.membership{background:var(--blush)}
+.membership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;text-align:left}
+.plan{padding:28px;background:var(--cream);border:1px solid #ead8de}
+.plan.featured{background:var(--wine);color:var(--blush)}
+.plan h3{font-size:26px}
+.plan.featured h3,.plan.featured p,.plan.featured li{color:var(--blush)}
+.plan p,.plan li{font-size:12px;line-height:1.9;color:var(--muted)}
+.plan ul{padding-left:17px;min-height:85px}
+.plan .button{margin-top:10px}
+.plan.featured .button{background:var(--pink);color:var(--wine)}
+.booking{padding:85px 8%;background:var(--wine);color:var(--blush);text-align:center}
+.booking h2{color:var(--blush)}
+.booking p{font-size:13px;line-height:2;color:#e9ced7;max-width:450px;margin:0 auto}
+.booking .button{margin-top:25px}
+footer{padding:30px 7%;background:var(--cream);display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+footer span{font-size:10px;color:var(--muted)}
+footer .logo{font-size:24px;color:var(--wine)}
+@media(max-width:760px){
+header{flex-wrap:wrap;padding:20px 5%}
+nav{order:3;width:100%;justify-content:space-between;gap:8px}
+nav a{font-size:9px}
+.nav-cta{font-size:9px;padding:12px}
+.hero{grid-template-columns:1fr}
+.hero-copy{padding:55px 8%}
+.hero-image{min-height:340px}
+.class-grid,.membership-grid{grid-template-columns:1fr}
+.class-card img{height:270px}
+.studio{grid-template-columns:1fr;gap:25px}
+.studio-image{height:320px}
+.section{padding:65px 7%}
+}
+</style>
+</head>
+<body>
+
+<div class="announcement">A MORE INTENTIONAL WAY TO MOVE · PILATES, REFINED</div>
+
+<header>
+<a class="logo" href="#">FORME</a>
+<nav>
+<a href="#method">THE METHOD</a>
+<a href="#classes">CLASSES</a>
+<a href="#studio">OUR STUDIO</a>
+</nav>
+<a class="nav-cta" href="#booking">BOOK A CLASS ↗</a>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-copy">
+<p class="eyebrow">A BOUTIQUE PILATES EXPERIENCE</p>
+<h1>Strength,<br>in a softer<br>form.</h1>
+<p class="description">Thoughtful movement. Intentional strength. A space to reconnect with yourself, one considered movement at a time.</p>
+<a class="button" href="#classes">DISCOVER YOUR PRACTICE ↗</a>
+<p class="eyebrow" style="margin-top:30px">REFORMER · MAT · PRIVATE SESSIONS</p>
+</div>
+<div class="hero-image" role="img" aria-label="Movement and wellness inspiration"></div>
+</section>
+
+<section class="section philosophy center" id="method">
+<p class="kicker">THE FORME PHILOSOPHY</p>
+<h2>Movement that meets you<br>where you are.</h2>
+<p class="intro">Our approach combines mindful movement, considered instruction and purposeful strength to help you feel more connected to your body. No pressure to be perfect. Just space to begin.</p>
+</section>
+
+<section class="section classes" id="classes">
+<div class="center">
+<p class="kicker">FIND YOUR FLOW</p>
+<h2>The class edit.</h2>
+<p class="intro">Different practices, one thoughtful approach. Find the movement that feels right for you.</p>
+</div>
+<div class="class-grid">
+<article class="class-card">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Movement and fitness practice">
+<div class="class-copy">
+<p class="class-number">01 · ALL LEVELS</p>
+<h3>The Reformer</h3>
+<p>A full-body practice designed to build strength, control and length through considered movement.</p>
+<a class="text-link" href="#booking">EXPLORE CLASS ↗</a>
+</div>
+</article>
+<article class="class-card">
+<img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Mindful stretching practice">
+<div class="class-copy">
+<p class="class-number">02 · MINDFUL MOVEMENT</p>
+<h3>The Mat</h3>
+<p>Return to the foundations with a focused practice connecting breath, balance and core strength.</p>
+<a class="text-link" href="#booking">EXPLORE CLASS ↗</a>
+</div>
+</article>
+<article class="class-card">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Personal movement session">
+<div class="class-copy">
+<p class="class-number">03 · PERSONALISED</p>
+<h3>Private Practice</h3>
+<p>A more personal session tailored to your goals, your pace and your individual movement journey.</p>
+<a class="text-link" href="#booking">ENQUIRE ↗</a>
+</div>
+</article>
+</div>
+</section>
+
+<section class="section studio" id="studio">
+<img class="studio-image" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=85" alt="An inspiring movement and wellness space">
+<div class="studio-copy">
+<p class="kicker">YOUR SPACE TO RESET</p>
+<h2>Less noise.<br>More you.</h2>
+<p>An intimate, welcoming space where thoughtful details and expert guidance make room for you to focus on what matters: how you feel.</p>
+<p>Come as you are. Leave feeling a little more like yourself.</p>
+<a class="text-link" href="#booking">MEET YOUR NEW RITUAL ↗</a>
+</div>
+</section>
+
+<section class="quote">
+<p class="kicker">A MOMENT FOR YOU</p>
+<blockquote>“You don't have to become someone else. You just have to make space for yourself.”</blockquote>
+<p class="kicker">THE FORME APPROACH</p>
+</section>
+
+<section class="section membership" id="membership">
+<div class="center">
+<p class="kicker">YOUR PRACTICE, YOUR PACE</p>
+<h2>Find your rhythm.</h2>
+<p class="intro">Choose a starting point that works for your lifestyle. These sample plans can be customised for your studio.</p>
+</div>
+<div class="membership-grid">
+<article class="plan">
+<p class="class-number">A GENTLE BEGINNING</p>
+<h3>The First Step</h3>
+<p>For those ready to discover the practice.</p>
+<ul><li>Introductory class</li><li>Studio orientation</li><li>Personal guidance</li></ul>
+<a class="text-link" href="#booking">GET STARTED ↗</a>
+</article>
+<article class="plan featured">
+<p class="class-number" style="color:#f2dce3">THE SIGNATURE</p>
+<h3>The Ritual</h3>
+<p>A considered routine to keep you connected.</p>
+<ul><li>Regular class sessions</li><li>Small-group experience</li><li>Progress at your pace</li></ul>
+<a class="button" href="#booking">FIND YOUR PLAN ↗</a>
+</article>
+<article class="plan">
+<p class="class-number">A PERSONAL TOUCH</p>
+<h3>The Private</h3>
+<p>One-to-one attention, focused on you.</p>
+<ul><li>Personalised sessions</li><li>Individual movement goals</li><li>Flexible enquiries</li></ul>
+<a class="text-link" href="#booking">ENQUIRE ↗</a>
+</article>
+</div>
+</section>
+
+<section class="booking" id="booking">
+<p class="kicker" style="color:#f2dce3">YOUR NEXT CHAPTER STARTS HERE</p>
+<h2>Make space<br>for yourself.</h2>
+<p>Begin with a class, discover your rhythm, and build a practice that feels like yours.</p>
+<a class="button" href="mailto:hello@formepilates.com?subject=Pilates%20Class%20Enquiry">ENQUIRE ABOUT CLASSES ↗</a>
+</section>
+</main>
+
+<footer>
+<a class="logo" href="#">FORME</a>
+<span>A MORE INTENTIONAL WAY TO MOVE.</span>
+<span>© 2026 FORME PILATES</span>
+<a href="#method">BACK TO TOP ↑</a>
+</footer>
+
+</body>
+</html>

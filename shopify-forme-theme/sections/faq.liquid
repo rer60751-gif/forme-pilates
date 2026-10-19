@@ -1,0 +1,157 @@
+
+<section class="forme-faq">
+  <div class="forme-faq__inner">
+    {% if section.settings.eyebrow != blank %}
+      <p class="forme-faq__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {% endif %}
+
+    <h2>{{ section.settings.heading | escape }}</h2>
+
+    {% if section.settings.intro != blank %}
+      <div class="forme-faq__intro">{{ section.settings.intro }}</div>
+    {% endif %}
+
+    <div class="forme-faq__items">
+      {% for block in section.blocks %}
+        <details class="forme-faq__item" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question | escape }}</summary>
+          <div class="forme-faq__answer">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .forme-faq {
+    background: {{ section.settings.background }};
+    color: {{ section.settings.text_color }};
+    padding: 64px 20px;
+  }
+
+  .forme-faq__inner {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .forme-faq__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .forme-faq h2 {
+    color: {{ section.settings.heading_color }};
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 12px 0 18px;
+  }
+
+  .forme-faq__intro {
+    margin-bottom: 28px;
+  }
+
+  .forme-faq__item {
+    border-bottom: 1px solid currentColor;
+    padding: 18px 0;
+  }
+
+  .forme-faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .forme-faq__answer {
+    padding-top: 12px;
+    line-height: 1.7;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "GOOD TO KNOW"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "<p>Everything you need to know before your first class.</p>"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#64283B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#35272A"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What should I bring to class?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Wear comfortable clothing and bring water. Check your studio's instructions before your first visit.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FORME FAQ",
+      "blocks": [
+        {
+          "type": "question"
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Is Pilates suitable for beginners?",
+            "answer": "<p>Yes. Choose a class that matches your experience level and tell your instructor you are new.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What should I wear?",
+            "answer": "<p>Comfortable, fitted workout clothing is a good choice.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

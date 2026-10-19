@@ -1,0 +1,203 @@
+
+<section class="forme-cart page-width">
+  <header class="forme-cart__header">
+    <p class="forme-cart__eyebrow">YOUR FORME EDIT</p>
+    <h1>{{ section.settings.heading | escape }}</h1>
+  </header>
+
+  {% if cart.item_count == 0 %}
+    <div class="forme-cart__empty">
+      <p>Your bag is waiting for something lovely.</p>
+      <a class="forme-cart__button" href="{{ routes.all_products_collection_url }}">
+        Continue shopping
+      </a>
+    </div>
+  {% else %}
+    {% form 'cart', cart %}
+      <div class="forme-cart__items">
+        {% for item in cart.items %}
+          <article class="forme-cart__item">
+            <a href="{{ item.url }}" class="forme-cart__image">
+              {% if item.image %}
+                {{ item.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: item.product.title }}
+              {% endif %}
+            </a>
+
+            <div class="forme-cart__details">
+              <h2><a href="{{ item.url }}">{{ item.product.title | escape }}</a></h2>
+
+              {% unless item.product.has_only_default_variant %}
+                <p>{{ item.variant.title | escape }}</p>
+              {% endunless %}
+
+              <p>{{ item.final_price | money }}</p>
+
+              <label for="Quantity-{{ item.key }}">Quantity</label>
+              <input
+                id="Quantity-{{ item.key }}"
+                type="number"
+                name="updates[]"
+                value="{{ item.quantity }}"
+                min="0"
+              >
+
+              <a href="{{ item.url_to_remove }}" class="forme-cart__remove">Remove</a>
+            </div>
+
+            <p class="forme-cart__line-price">{{ item.final_line_price | money }}</p>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="forme-cart__summary">
+        <p class="forme-cart__subtotal">
+          Subtotal <strong>{{ cart.total_price | money }}</strong>
+        </p>
+        <p class="forme-cart__note">Shipping and taxes are calculated at checkout.</p>
+
+        <button class="forme-cart__button forme-cart__secondary" type="submit" name="update">
+          Update cart
+        </button>
+
+        <button class="forme-cart__button" type="submit" name="checkout">
+          Proceed to checkout
+        </button>
+      </div>
+    {% endform %}
+  {% endif %}
+</section>
+
+<style>
+  .forme-cart {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .forme-cart__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .forme-cart__eyebrow {
+    color: #64283b;
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .forme-cart h1 {
+    color: #64283b;
+    font-size: clamp(32px, 5vw, 46px);
+  }
+
+  .forme-cart__empty {
+    text-align: center;
+    padding: 32px 0;
+  }
+
+  .forme-cart__items {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .forme-cart__item {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid #e4d7d5;
+  }
+
+  .forme-cart__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+  }
+
+  .forme-cart__details h2 {
+    font-size: 18px;
+    margin-top: 0;
+  }
+
+  .forme-cart__details h2 a {
+    color: #64283b;
+    text-decoration: none;
+  }
+
+  .forme-cart__details input {
+    display: block;
+    width: 90px;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #d7c6c7;
+    border-radius: 4px;
+  }
+
+  .forme-cart__remove {
+    color: #64283b;
+    font-size: 14px;
+  }
+
+  .forme-cart__summary {
+    max-width: 420px;
+    margin: 32px 0 0 auto;
+  }
+
+  .forme-cart__subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+  }
+
+  .forme-cart__note {
+    font-size: 13px;
+    color: #76666a;
+    margin-bottom: 24px;
+  }
+
+  .forme-cart__button {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 12px;
+    border: 1px solid #64283b;
+    border-radius: 4px;
+    background: #64283b;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .forme-cart__secondary {
+    background: transparent;
+    color: #64283b;
+  }
+
+  @media (max-width: 600px) {
+    .forme-cart__item {
+      grid-template-columns: 80px 1fr;
+      gap: 14px;
+    }
+
+    .forme-cart__line-price {
+      grid-column: 2;
+      margin-top: -8px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your shopping bag"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,122 @@
+
+<header class="forme-header">
+  <div class="forme-header__inner page-width">
+    <a class="forme-header__logo" href="{{ routes.root_url }}">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name }}
+      {% else %}
+        {{ section.settings.brand_name | escape }}
+      {% endif %}
+    </a>
+
+    <nav class="forme-header__nav" aria-label="Main navigation">
+      {% if section.settings.menu != blank %}
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}">{{ link.title | escape }}</a>
+        {% endfor %}
+      {% endif %}
+    </nav>
+
+    <a class="forme-header__cart" href="{{ routes.cart_url }}">
+      Bag ({{ cart.item_count }})
+    </a>
+  </div>
+</header>
+
+<style>
+  .forme-header {
+    background: {{ section.settings.background_color }};
+    padding: 20px 0;
+    border-bottom: 1px solid #eadedb;
+  }
+
+  .forme-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .forme-header__logo {
+    color: {{ section.settings.text_color }};
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+  }
+
+  .forme-header__logo img {
+    width: {{ section.settings.logo_width }}px;
+    height: auto;
+  }
+
+  .forme-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .forme-header__nav a,
+  .forme-header__cart {
+    color: {{ section.settings.text_color }};
+    font-size: 0.85rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .forme-header__inner {
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .forme-header__nav {
+      order: 3;
+      width: 100%;
+      gap: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "FORME"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 80,
+      "max": 240,
+      "step": 10,
+      "default": 140,
+      "unit": "px"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FBF8F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#64283B"
+    }
+  ]
+}
+{% endschema %}

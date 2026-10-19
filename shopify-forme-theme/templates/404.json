@@ -1,0 +1,14 @@
+
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "heading": "Let's find your way back",
+        "message": "<p>Sorry, we couldn't find that page.</p>",
+        "button_label": "Back to home"
+      }
+    }
+  },
+  "order": ["main"]
+}

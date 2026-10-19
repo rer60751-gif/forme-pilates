@@ -1,0 +1,68 @@
+
+<section class="forme-page page-width">
+  <header class="forme-page__header">
+    {% if section.settings.show_eyebrow %}
+      <p class="forme-page__eyebrow">THE FORME JOURNAL</p>
+    {% endif %}
+
+    <h1>{{ page.title | escape }}</h1>
+  </header>
+
+  <div class="forme-page__content rte">
+    {{ page.content }}
+  </div>
+</section>
+
+<style>
+  .forme-page {
+    max-width: 1000px;
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
+
+  .forme-page__header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .forme-page__eyebrow {
+    color: #64283b;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .forme-page h1 {
+    color: #64283b;
+    font-size: clamp(32px, 5vw, 48px);
+  }
+
+  .forme-page__content {
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.9;
+  }
+
+  .forme-page__content img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .forme-page__content a {
+    color: #64283b;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_eyebrow",
+      "label": "Show small heading",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

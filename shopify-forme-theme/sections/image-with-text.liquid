@@ -1,0 +1,109 @@
+
+<section class="forme-studio page-width">
+  <div class="forme-studio__grid">
+    <div class="forme-studio__image">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+      {% else %}
+        <div class="forme-studio__placeholder">Add your studio image</div>
+      {% endif %}
+    </div>
+
+    <div class="forme-studio__content">
+      <p>{{ section.settings.eyebrow | escape }}</p>
+      <h2>{{ section.settings.heading | escape }}</h2>
+      <div>{{ section.settings.text }}</div>
+      {% if section.settings.button_label != blank %}
+        <a class="button" href="{{ section.settings.button_link | default: routes.root_url }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .forme-studio {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .forme-studio__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .forme-studio__image img,
+  .forme-studio__placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .forme-studio__placeholder {
+    display: grid;
+    place-items: center;
+    background: #f6e9e7;
+    color: #64283b;
+  }
+
+  .forme-studio__content {
+    padding: 24px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .forme-studio__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME studio",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Studio image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "THE FORME EXPERIENCE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A space to reconnect."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Step into a calm, considered space where movement becomes a ritual and every detail invites you to slow down.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover our studio"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FORME studio"
+    }
+  ]
+}
+{% endschema %}

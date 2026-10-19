@@ -1,0 +1,12 @@
+
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "forme_header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": ["forme_header"]
+}

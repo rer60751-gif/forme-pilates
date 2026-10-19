@@ -1,0 +1,140 @@
+
+<section class="forme-classes page-width">
+  <div class="forme-classes__intro">
+    <p>{{ section.settings.eyebrow | escape }}</p>
+    <h2>{{ section.settings.heading | escape }}</h2>
+    <div>{{ section.settings.description }}</div>
+  </div>
+
+  <div class="forme-classes__grid">
+    {% for block in section.blocks %}
+      <article class="forme-class" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.title }}
+        {% endif %}
+        <div class="forme-class__body">
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.description | escape }}</p>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .forme-classes {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .forme-classes__intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .forme-classes__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .forme-class img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .forme-class__body {
+    padding: 16px 0;
+  }
+
+  .forme-class__body h3 {
+    margin-bottom: 8px;
+  }
+
+  .forme-class__body a {
+    color: #64283b;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    .forme-classes__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME class cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "MOVE WITH US"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your practice."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Thoughtfully designed classes to meet you where you are.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "class",
+      "name": "Class card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Class name",
+          "default": "Reformer Pilates"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Build strength and move with intention."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link text",
+          "default": "Discover more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FORME class cards",
+      "blocks": [
+        {"type": "class"},
+        {"type": "class"},
+        {"type": "class"}
+      ]
+    }
+  ]
+}
+{% endschema %}

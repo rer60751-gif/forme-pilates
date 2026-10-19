@@ -1,0 +1,13 @@
+
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "heading": "Search FORME",
+        "results_per_page": 12
+      }
+    }
+  },
+  "order": ["main"]
+}

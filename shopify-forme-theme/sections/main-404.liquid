@@ -1,0 +1,54 @@
+
+<section class="forme-404">
+  <p>FORME PILATES</p>
+  <h1>{{ section.settings.heading | escape }}</h1>
+  <div>{{ section.settings.message }}</div>
+  <a href="{{ routes.root_url }}">{{ section.settings.button_label | escape }}</a>
+</section>
+
+<style>
+  .forme-404 {
+    text-align: center;
+    padding: 100px 20px;
+    background: #fbf8f4;
+    color: #35272a;
+  }
+  .forme-404 h1 {
+    color: #64283b;
+    font-size: clamp(32px, 5vw, 48px);
+  }
+  .forme-404 a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: #64283b;
+    color: white;
+    text-decoration: none;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME 404",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Let's find your way back"
+    },
+    {
+      "type": "richtext",
+      "id": "message",
+      "label": "Message",
+      "default": "<p>Sorry, we couldn't find that page.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Back to home"
+    }
+  ]
+}
+{% endschema %}

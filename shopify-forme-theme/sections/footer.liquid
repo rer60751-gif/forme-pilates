@@ -1,0 +1,104 @@
+
+<footer class="forme-footer">
+  <div class="page-width forme-footer__inner">
+    <div>
+      <h2>{{ section.settings.brand_name | escape }}</h2>
+      <p>{{ section.settings.description | escape }}</p>
+    </div>
+
+    {% if section.settings.menu != blank %}
+      <nav aria-label="Footer navigation">
+        {% for link in section.settings.menu.links %}
+          <p><a href="{{ link.url }}">{{ link.title | escape }}</a></p>
+        {% endfor %}
+      </nav>
+    {% endif %}
+
+    {% if section.settings.email != blank %}
+      <p><a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a></p>
+    {% endif %}
+  </div>
+
+  <div class="page-width forme-footer__bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</p>
+  </div>
+</footer>
+
+<style>
+  .forme-footer {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding: 48px 0 20px;
+  }
+
+  .forme-footer h2,
+  .forme-footer a {
+    color: {{ section.settings.text_color }};
+  }
+
+  .forme-footer__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .forme-footer__inner > div {
+    max-width: 400px;
+  }
+
+  .forme-footer__bottom {
+    border-top: 1px solid currentColor;
+    margin-top: 32px;
+    padding-top: 12px;
+    font-size: 0.8rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "FORME PILATES"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Mindful movement. Meaningful strength. A space to reconnect."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "hello@example.com"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Footer menu"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#64283B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FORME footer"
+    }
+  ]
+}
+{% endschema %}

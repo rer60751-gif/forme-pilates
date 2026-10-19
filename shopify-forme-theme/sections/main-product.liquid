@@ -1,0 +1,191 @@
+
+<section class="forme-product page-width">
+  <div class="forme-product__grid">
+    <div class="forme-product__image">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
+      {% else %}
+        <div class="forme-product__placeholder">FORME Pilates</div>
+      {% endif %}
+    </div>
+
+    <div class="forme-product__details">
+      {% if section.settings.show_vendor and product.vendor != blank %}
+        <p class="forme-product__vendor">{{ product.vendor | escape }}</p>
+      {% endif %}
+
+      <h1>{{ product.title | escape }}</h1>
+
+      <div class="forme-product__price">
+        {{ product.selected_or_first_available_variant.price | money }}
+        {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+          <s>{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+        {% endif %}
+      </div>
+
+      {% if product.description != blank %}
+        <div class="forme-product__description">
+          {{ product.description }}
+        </div>
+      {% endif %}
+
+      {% form 'product', product %}
+        {% if product.has_only_default_variant == false %}
+          <label for="ProductVariant-{{ section.id }}">Choose an option</label>
+          <select id="ProductVariant-{{ section.id }}" name="id">
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title | escape }} — {{ variant.price | money }}
+                {% unless variant.available %} — Sold out{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endif %}
+
+        <label class="forme-product__quantity-label" for="Quantity-{{ section.id }}">Quantity</label>
+        <input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+
+        <button
+          class="forme-product__button"
+          type="submit"
+          name="add"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+        >
+          {% if product.selected_or_first_available_variant.available %}
+            Add to cart
+          {% else %}
+            Sold out
+          {% endif %}
+        </button>
+      {% endform %}
+
+      {% if section.settings.show_share %}
+        <p class="forme-product__note">Move, breathe, and feel good with FORME.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .forme-product {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .forme-product__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .forme-product__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .forme-product__placeholder {
+    background: #f6e9e7;
+    color: #64283b;
+    min-height: 350px;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+  }
+
+  .forme-product__vendor {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .forme-product__details h1 {
+    color: #64283b;
+    font-size: clamp(30px, 4vw, 44px);
+  }
+
+  .forme-product__price {
+    font-size: 20px;
+    margin: 20px 0;
+  }
+
+  .forme-product__price s {
+    color: #76666a;
+    margin-left: 8px;
+    font-size: 15px;
+  }
+
+  .forme-product__description {
+    line-height: 1.8;
+    margin: 24px 0;
+  }
+
+  .forme-product__details select,
+  .forme-product__details input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px;
+    border: 1px solid #d7c6c7;
+    border-radius: 4px;
+    background: #fff;
+    color: #35272a;
+  }
+
+  .forme-product__button {
+    width: 100%;
+    padding: 16px;
+    border: 0;
+    border-radius: 4px;
+    background: #64283b;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .forme-product__button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .forme-product__note {
+    color: #76666a;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 749px) {
+    .forme-product__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show brand note",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

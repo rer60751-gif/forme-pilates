@@ -1,0 +1,51 @@
+
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "MOVE WITH INTENTION",
+        "heading": "Find your form.",
+        "subheading": "A more mindful approach to movement. Discover Pilates designed to help you feel stronger, more balanced, and more connected.",
+        "button_label": "Explore our classes",
+        "button_link": "/collections/all"
+      }
+    },
+    "philosophy": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "THE FORME PHILOSOPHY",
+        "heading": "Strength, with softness.",
+        "text": "<p>We believe movement should feel as good as it looks. FORME brings thoughtful movement, intentional practice, and everyday wellbeing together.</p>",
+        "button_label": "Discover FORME",
+        "button_link": "/pages/about"
+      }
+    },
+    "classes": {
+      "type": "class-cards",
+      "settings": {}
+    },
+    "studio": {
+      "type": "image-with-text",
+      "settings": {
+        "eyebrow": "YOUR SPACE TO RESET",
+        "heading": "Make space for yourself.",
+        "text": "<p>Step away from the noise and return to what matters: your body, your breath, and your own pace.</p>",
+        "button_label": "Explore the collection",
+        "button_link": "/collections/all",
+        "image_position": "left"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "philosophy",
+    "classes",
+    "studio",
+    "faq"
+  ]
+}

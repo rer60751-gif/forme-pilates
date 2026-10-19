@@ -1,0 +1,169 @@
+
+<section class="forme-collection page-width">
+  <header class="forme-collection__header">
+    <p class="forme-collection__eyebrow">MOVE WITH FORME</p>
+    <h1>{{ collection.title | escape }}</h1>
+
+    {% if collection.description != blank %}
+      <div class="forme-collection__description">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </header>
+
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="forme-collection__grid">
+      {% for product in collection.products %}
+        <article class="forme-collection__card">
+          <a href="{{ product.url }}" class="forme-collection__image">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: product.title }}
+            {% else %}
+              <div class="forme-collection__placeholder">FORME</div>
+            {% endif %}
+          </a>
+
+          <div class="forme-collection__info">
+            <h2>
+              <a href="{{ product.url }}">{{ product.title | escape }}</a>
+            </h2>
+            <p>{{ product.price | money }}</p>
+            {% if section.settings.show_description and product.description != blank %}
+              <div class="forme-collection__excerpt">
+                {{ product.description | strip_html | truncate: 100 }}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% else %}
+        <p>No products are available in this collection yet.</p>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <nav class="forme-collection__pagination" aria-label="Pagination">
+        {% if paginate.previous %}
+          <a href="{{ paginate.previous.url }}">Previous</a>
+        {% endif %}
+        <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+        {% if paginate.next %}
+          <a href="{{ paginate.next.url }}">Next</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% endpaginate %}
+</section>
+
+<style>
+  .forme-collection {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .forme-collection__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+
+  .forme-collection__eyebrow {
+    color: #64283b;
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .forme-collection__header h1 {
+    color: #64283b;
+    font-size: clamp(32px, 5vw, 48px);
+  }
+
+  .forme-collection__description {
+    line-height: 1.8;
+  }
+
+  .forme-collection__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 20px;
+  }
+
+  .forme-collection__image {
+    display: block;
+    background: #f6e9e7;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+
+  .forme-collection__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .forme-collection__placeholder {
+    aspect-ratio: 4 / 5;
+    display: grid;
+    place-items: center;
+    color: #64283b;
+    font-size: 24px;
+  }
+
+  .forme-collection__info h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .forme-collection__info h2 a {
+    color: #64283b;
+    text-decoration: none;
+  }
+
+  .forme-collection__info p {
+    margin-top: 0;
+  }
+
+  .forme-collection__excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .forme-collection__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 749px) {
+    .forme-collection__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 12px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FORME collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show product descriptions",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
